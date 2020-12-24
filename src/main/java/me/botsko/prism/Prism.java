@@ -8,7 +8,6 @@ import me.botsko.prism.actionlibs.InternalAffairs;
 import me.botsko.prism.actionlibs.QueryResult;
 import me.botsko.prism.actionlibs.QueueDrain;
 import me.botsko.prism.actionlibs.RecordingTask;
-import me.botsko.prism.actions.ActionMeter;
 import me.botsko.prism.appliers.PreviewSession;
 import me.botsko.prism.commands.PrismCommands;
 import me.botsko.prism.commands.WhatCommand;
@@ -644,9 +643,9 @@ public class Prism extends JavaPlugin {
             if (!metrics.isEnabled()) {
                 Prism.warn("bStats failed to initialise! Please check Prism/bStats configs.");
             }
-            Metrics.MultiLineChart blockBreaksHour =
-                    new Metrics.MultiLineChart("//TODO", ActionMeter::getMetricMeter);
-            metrics.addCustomChart(blockBreaksHour);
+//            Metrics.MultiLineChart blockBreaksHour =
+//                    new Metrics.MultiLineChart("//TODO", ActionMeter::getMetricMeter);
+//            metrics.addCustomChart(blockBreaksHour);
         }
     }
 

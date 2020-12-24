@@ -1,7 +1,6 @@
 package me.botsko.prism.actionlibs;
 
 import me.botsko.prism.Prism;
-import me.botsko.prism.actions.ActionMeter;
 import me.botsko.prism.actions.Handler;
 
 import java.util.concurrent.LinkedBlockingQueue;
@@ -29,7 +28,7 @@ public class RecordingQueue {
             return;
         }
         queue.add(a);
-        ActionMeter.mark(a.getClass());
+//        ActionMeter.mark(a.getClass());
 
     }
 

@@ -1,13 +1,8 @@
 package me.botsko.prism;
 
-import au.com.addstar.dripreporter.DripGauge;
-import au.com.addstar.dripreporter.DripReporterApi;
 import com.sk89q.worldedit.WorldEdit;
 import com.sk89q.worldedit.bukkit.WorldEditPlugin;
-import me.botsko.prism.actionlibs.RecordingQueue;
-import me.botsko.prism.actions.ActionMeter;
 import me.botsko.prism.bridge.PrismBlockEditHandler;
-import me.botsko.prism.measurement.QueueStats;
 import org.bukkit.plugin.Plugin;
 
 import java.util.ArrayList;
@@ -19,7 +14,7 @@ import java.util.Collection;
  */
 public class ApiHandler {
     private static final Collection<String> enabledPlugins = new ArrayList<>();
-    public static DripReporterApi monitor = null;
+//    public static DripReporterApi monitor = null;
     public static WorldEditPlugin worldEditPlugin = null;
 
     private ApiHandler() {
@@ -29,25 +24,25 @@ public class ApiHandler {
      * Setup Drip Reporter.
      */
     static void configureMonitor() {
-        Plugin drip = Prism.getInstance().getServer().getPluginManager().getPlugin("DripReporter");
-        if (drip != null && drip.isEnabled()) {
-            monitor = (DripReporterApi) drip;
-            Prism.log("Prism hooked DripReporterApi instance: " + drip.getName() + " "
-                    + drip.getDescription().getVersion());
-            enabledPlugins.add(drip.getName());
-            Prism.getInstance().monitoring = true;
-            ActionMeter.setupActionMeter();
-            DripGauge<Integer> recordingQ = RecordingQueue::getQueueSize;
-            ApiHandler.monitor.addGauge(Prism.class, recordingQ, "RecordingQueueSize");
-            DripGauge<Double> batchInsertNum = QueueStats::getPerMinuteInsertAverage;
-            ApiHandler.monitor.addGauge(Prism.class, batchInsertNum, "BatchInsertSize");
-            DripGauge<Double> batchProcessTime = QueueStats::getPerMinuteBatchProcessAverage;
-            ApiHandler.monitor.addGauge(Prism.class, batchProcessTime, "BatchProcessingTime");
-            DripGauge<Double> batchBuildAverage = QueueStats::getPerMinuteBatchBuildAverage;
-            ApiHandler.monitor.addGauge(Prism.class, batchBuildAverage, "BatchBuildTime");
-
-
-        }
+//        Plugin drip = Prism.getInstance().getServer().getPluginManager().getPlugin("DripReporter");
+//        if (drip != null && drip.isEnabled()) {
+//            monitor = (DripReporterApi) drip;
+//            Prism.log("Prism hooked DripReporterApi instance: " + drip.getName() + " "
+//                    + drip.getDescription().getVersion());
+//            enabledPlugins.add(drip.getName());
+//            Prism.getInstance().monitoring = true;
+//            ActionMeter.setupActionMeter();
+//            DripGauge<Integer> recordingQ = RecordingQueue::getQueueSize;
+//            ApiHandler.monitor.addGauge(Prism.class, recordingQ, "RecordingQueueSize");
+//            DripGauge<Double> batchInsertNum = QueueStats::getPerMinuteInsertAverage;
+//            ApiHandler.monitor.addGauge(Prism.class, batchInsertNum, "BatchInsertSize");
+//            DripGauge<Double> batchProcessTime = QueueStats::getPerMinuteBatchProcessAverage;
+//            ApiHandler.monitor.addGauge(Prism.class, batchProcessTime, "BatchProcessingTime");
+//            DripGauge<Double> batchBuildAverage = QueueStats::getPerMinuteBatchBuildAverage;
+//            ApiHandler.monitor.addGauge(Prism.class, batchBuildAverage, "BatchBuildTime");
+//
+//
+//        }
     }
 
     static void hookWorldEdit() {
@@ -75,16 +70,16 @@ public class ApiHandler {
     }
 
     private static boolean disableDripReporterHook() {
-        if (monitor != null) {
-            monitor.getRegistry().remove("Prism.RecordingQueueSize");
-            try {
-                enabledPlugins.remove(((Plugin) monitor).getName());
-            } catch (ClassCastException ignore) {
-                return false;
-            }
-        }
-        monitor = null;
-        Prism.getInstance().monitoring = false;
+//        if (monitor != null) {
+//            monitor.getRegistry().remove("Prism.RecordingQueueSize");
+//            try {
+//                enabledPlugins.remove(((Plugin) monitor).getName());
+//            } catch (ClassCastException ignore) {
+//                return false;
+//            }
+//        }
+//        monitor = null;
+//        Prism.getInstance().monitoring = false;
         return true;
     }
 
