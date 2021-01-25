@@ -461,7 +461,7 @@ public class SqlSelectQueryBuilder extends QueryBuilder implements SelectQuery {
     }
 
     @Override
-    public QueryResult executeSelect(TimeTaken eventTimer) {
+    public QueryResult executeSelect(TimeTaken eventTimer, boolean includeChatResults) {
 
         final List<Handler> actions = new ArrayList<>();
         // Build conditions based off final args
@@ -499,6 +499,11 @@ public class SqlSelectQueryBuilder extends QueryBuilder implements SelectQuery {
                 if (actionName.isEmpty()) {
                     Prism.warn("Record contains action ID that doesn't exist in cache: " + actionId
                             + ", cacheSize=" + Prism.prismActions.size());
+                    continue;
+                }
+
+                // Don't include chat or commands in the result if the player doesn't have perms
+                if (!includeChatResults && (actionName.equals("player-chat") || actionName.equals("player-command"))) {
                     continue;
                 }
 

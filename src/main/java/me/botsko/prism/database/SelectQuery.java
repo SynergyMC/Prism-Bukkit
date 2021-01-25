@@ -16,7 +16,7 @@ public interface SelectQuery {
 
     void setShouldGroup(boolean shouldGroup);
 
-    QueryResult executeSelect(TimeTaken eventTimer);
+    QueryResult executeSelect(TimeTaken eventTimer, boolean includeChatResults);
     /*    These methods should exist in a selectQuery and it should extend QueryBuilder
     String select();
     String where() ;

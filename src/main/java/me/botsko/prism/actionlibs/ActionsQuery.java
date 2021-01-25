@@ -62,7 +62,7 @@ public class ActionsQuery {
         }
         qb.setParameters(parameters);
         qb.setShouldGroup(shouldGroup);
-        QueryResult res = qb.executeSelect(plugin.eventTimer);
+        QueryResult res = qb.executeSelect(plugin.eventTimer, sender.hasPermission("prism.chat-results"));
         // Pull results
         res.setPerPage(parameters.getPerPage());
         // Cache it if we're doing a lookup. Otherwise we don't

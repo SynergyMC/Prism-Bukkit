@@ -87,8 +87,8 @@ public class SqlSelectProcessQuery extends SqlSelectQueryBuilder implements Sele
     }
 
     @Override
-    public QueryResult executeSelect(TimeTaken eventTimer) {
-        return super.executeSelect(eventTimer);
+    public QueryResult executeSelect(TimeTaken eventTimer, boolean includeChatResults) {
+        return super.executeSelect(eventTimer, includeChatResults);
     }
 
     @Override
