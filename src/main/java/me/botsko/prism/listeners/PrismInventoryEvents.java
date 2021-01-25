@@ -8,6 +8,7 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Villager;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -205,6 +206,12 @@ public class PrismInventoryEvents implements Listener {
                 return;
             }
         }
+
+        // Ignore villager trades
+        if (event.getInventory().getHolder() instanceof Villager) {
+            return;
+        }
+
         boolean isTopInv = slot < event.getInventory().getSize();
 
         ItemStack heldItem = event.getCursor();
