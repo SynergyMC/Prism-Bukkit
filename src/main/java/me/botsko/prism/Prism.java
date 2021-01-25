@@ -389,8 +389,6 @@ public class Prism extends JavaPlugin {
         } else {
             pasteKey = null;
         }
-        final List<String> worldNames = getServer().getWorlds().stream()
-                .map(World::getName).collect(Collectors.toList());
 
         final String[] playerNames = Bukkit.getServer().getOnlinePlayers().stream()
                 .map(Player::getName).toArray(String[]::new);
@@ -437,12 +435,6 @@ public class Prism extends JavaPlugin {
             prismDataSource.cacheWorldPrimaryKeys(prismWorlds);
             PlayerIdentification.cacheOnlinePlayerPrimaryKeys(playerNames);
 
-            // ensure current worlds are added
-            for (final String w : worldNames) {
-                if (!Prism.prismWorlds.containsKey(w)) {
-                    prismDataSource.addWorldName(w);
-                }
-            }
             // Apply any updates
             final DatabaseUpdater up = new DatabaseUpdater(this);
             up.applyUpdates();
@@ -496,6 +488,15 @@ public class Prism extends JavaPlugin {
             eventTimer = new TimeTaken(this);
             queueStats = new QueueStats();
             ignore = new Ignore(this);
+
+            // ensure current worlds are added
+            final List<String> worldNames = getServer().getWorlds().stream()
+                    .map(World::getName).collect(Collectors.toList());
+            for (final String w : worldNames) {
+                if (!Prism.prismWorlds.containsKey(w)) {
+                    prismDataSource.addWorldName(w);
+                }
+            }
 
             // Assign event listeners
             getServer().getPluginManager().registerEvents(new PrismBlockEvents(this), this);
