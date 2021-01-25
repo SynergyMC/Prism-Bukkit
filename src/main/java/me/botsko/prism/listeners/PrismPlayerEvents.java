@@ -172,7 +172,7 @@ public class PrismPlayerEvents implements Listener {
      *
      * @param event AsyncPlayerChatEvent
      */
-    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+    @EventHandler(priority = EventPriority.MONITOR)
     public void onPlayerChat(final AsyncPlayerChatEvent event) {
 
         if (!Prism.getIgnore().event("player-chat", event.getPlayer())) {
